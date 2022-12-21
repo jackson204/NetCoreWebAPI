@@ -16,6 +16,8 @@ namespace FakeXiecheng.API
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //1.註冊net mvc的框架依賴
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,14 +32,8 @@ namespace FakeXiecheng.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/test", async context =>
-                {
-                    await context.Response.WriteAsync("Hello from test !");
-                });
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+               //2.使用mvc的 Middleware
+                endpoints.MapControllers();
             });
         }
     }
